@@ -1,8 +1,21 @@
 #include <Smartcar.h>
 #include <Wire.h>
 #include <VL53L0X.h>
-#include <WiFi.h>
 #include <ESPmDNS.h>
+
+#include <Arduino.h>
+#include <Arduino_JSON.h>
+#ifdef ARDUINO_ARCH_SAMD
+#include <WiFi101.h>
+#elif defined ARDUINO_ARCH_ESP8266
+#include <ESP8266WiFi.h>
+#elif defined ARDUINO_ARCH_ESP32
+#include <WiFi.h>
+#else
+#error Wrong platform
+#endif 
+
+#include <WifiLocation.h>
 
 char input;
 int forwardSpeed = 40;
@@ -18,8 +31,12 @@ int currentSpeed;
 const unsigned long PRINT_INTERVAL = 100;
 unsigned long previousPrintout = 0;
 const auto pulsesPerMeter = 600;
+
 const char* ssid     =  "aria";
 const char* password = "car12345";
+const char* googleApiKey = "AIzaSyBf8DN1sduEDVue-hP9qoUxLOL2DqogtdA";
+
+WifiLocation location(googleApiKey);
 WiFiServer server(80);
 
 BrushedMotor leftMotor(smartcarlib::pins::v2::leftMotorPins);
@@ -40,9 +57,17 @@ SmartCar car(control, gyroscope, leftOdometer, rightOdometer);
 VL53L0X sensor;
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
   Wire.begin();
   sensor.setTimeout(500);
+
+#ifdef ARDUINO_ARCH_ESP32
+    WiFi.mode(WIFI_MODE_STA);
+#endif
+#ifdef ARDUINO_ARCH_ESP8266
+    WiFi.mode(WIFI_STA);
+#endif
+    WiFi.begin(ssid, password);
   
  Serial.println();
     Serial.println();
@@ -52,8 +77,21 @@ void setup() {
     
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
-        Serial.print(".");
+        Serial.print("Attempting to connect to WPA SSID: ");
+        Serial.println(ssid);
+         Serial.print("Status = ");
+        Serial.println(WiFi.status());
+         delay(500);
     }
+
+    location_t loc2 = location.getGeoFromWiFi();
+
+    Serial.println("Location request data");
+    Serial.println(location.getSurroundingWiFiJson());
+    Serial.println("Latitude: " + String(loc2.lat, 7));
+    Serial.println("Longitude: " + String(loc2.lon, 7));
+    Serial.println("Accuracy: " + String(loc2.accuracy));
+
 
     Serial.println("");
     Serial.println("WiFi connected.");
@@ -111,6 +149,8 @@ void loop() {
             client.print("Click <a href=\"/L\">here</a> to turn left with the car.<br>");
             client.print("Click <a href=\"/R\">here</a> to turn right with the car.<br>");
             client.print("Click <a href=\"/B\">here</a> to go backwards with the car.<br>");
+            client.print("Click <a href=\"/M\">here</a> to get location");
+            
             
 
             // The HTTP response ends with another blank line:
@@ -142,6 +182,13 @@ void loop() {
           car.setAngle(rDegrees);
           car.setSpeed(forwardSpeed);             // GET /R makes the car go to the right
         }
+        if (currentLine.endsWith("GET /M")){
+        location_t loc = location.getGeoFromWiFi();
+          client.print("Lat: " + String(loc.lat, 7));
+          client.print("Lon: " + String(loc.lon, 7));
+         
+        }
+        
          if(sensor.readRangeContinuousMillimeters()< 250){
         car.setSpeed(0);
         delay(500);
@@ -156,4 +203,3 @@ void loop() {
     // close the connection:
     client.stop();
     }
-    
