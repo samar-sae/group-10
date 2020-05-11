@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
 
     private Button button;
     TextView textView;
+    private Button location;
     //HTTP server;
 
     @Override
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         textView = (TextView) findViewById(R.id.makeDelivText);
         //server = new HTTP();
         button = (Button) findViewById(R.id.manuallyBtn);
+        location = (Button) findViewById(R.id.button3);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
 
@@ -37,11 +39,29 @@ public class MainActivity extends AppCompatActivity {
 //                }
             }
         });
+
+        location.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+
+            public void onClick(View v) {
+                           openMapActivity();
+
+            }
+                                    }
+        );
+
+
     }
     public void openActivitySecond() {
         Intent intent = new Intent(MainActivity.this, ManualControlActivity.class);
         startActivity(intent);
 
+    }
+
+    public void openMapActivity (){
+        Intent intent = new Intent(MainActivity.this, MapsActivity.class);
+        startActivity(intent);
     }
 
 

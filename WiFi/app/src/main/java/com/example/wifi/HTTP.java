@@ -33,13 +33,14 @@ public class HTTP {
                 //Log.i("My URL is ", url);
                 e.printStackTrace();
                 connectionRequest = false;
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        // Magic here
-                    }
-                }, 1000); // Millisec
-            }
+//                new Handler().postDelayed(new Runnable() {
+//                    @Override
+//                    public void run() {
+//                        // Magic here
+//                    }
+//                }, 1000); // Millisec
+//            }
+                }
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {

@@ -6,6 +6,17 @@
     android:layout_height="wrap_content"
     android:background="#D9ECEC">
 
+    <Button
+        android:id="@+id/button2"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="107dp"
+        android:layout_height="64dp"
+        android:background="@drawable/button_rounded"
+        android:ellipsize="middle"
+        android:text="Slow Down"
+        tools:layout_editor_absoluteX="249dp"
+        tools:layout_editor_absoluteY="485dp" />
+
     <ImageButton
         android:id="@+id/stop"
         android:layout_width="129dp"
@@ -14,10 +25,10 @@
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61" />
+        app:layout_constraintVertical_bias="0.256" />
 
     <ImageButton
         android:id="@+id/forward"
@@ -30,7 +41,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.364" />
+        app:layout_constraintVertical_bias="0.003" />
 
     <ImageButton
         android:id="@+id/backward"
@@ -43,7 +54,7 @@
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.86" />
+        app:layout_constraintVertical_bias="0.499" />
 
     <ImageButton
         android:id="@+id/left"
@@ -56,7 +67,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.602" />
+        app:layout_constraintVertical_bias="0.261" />
 
     <ImageButton
         android:id="@+id/right"
@@ -66,10 +77,10 @@
         android:contentDescription="@string/todo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.992"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.602" />
+        app:layout_constraintVertical_bias="0.261" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -105,5 +116,25 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintGuide_begin="602dp" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="107dp"
+        android:layout_height="64dp"
+        android:background="@drawable/button_rounded"
+        android:ellipsize="middle"
+        android:text="Speed Up"
+        tools:layout_editor_absoluteX="56dp"
+        tools:layout_editor_absoluteY="485dp" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="STOP"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        tools:layout_editor_absoluteX="183dp"
+        tools:layout_editor_absoluteY="195dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
