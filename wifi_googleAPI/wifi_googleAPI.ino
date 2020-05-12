@@ -32,8 +32,8 @@ const unsigned long PRINT_INTERVAL = 100;
 unsigned long previousPrintout = 0;
 const auto pulsesPerMeter = 600;
 
-const char* ssid     =  "aria";
-const char* password = "car12345";
+const char* ssid     =  "Aria's Crib";
+const char* password = "Aria1337";
 const char* googleApiKey = "AIzaSyBf8DN1sduEDVue-hP9qoUxLOL2DqogtdA";
 
 WifiLocation location(googleApiKey);
