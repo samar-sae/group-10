@@ -3,6 +3,8 @@
 #include <VL53L0X.h>
 #include <ESPmDNS.h>
 
+
+
 #include <Arduino.h>
 #include <Arduino_JSON.h>
 #ifdef ARDUINO_ARCH_SAMD
@@ -32,9 +34,9 @@ const unsigned long PRINT_INTERVAL = 100;
 unsigned long previousPrintout = 0;
 const auto pulsesPerMeter = 600;
 
-const char* ssid     =  "aria";
-const char* password = "car12345";
-const char* googleApiKey = "AIzaSyBf8DN1sduEDVue-hP9qoUxLOL2DqogtdA";
+const char* ssid     =  "ssid";
+const char* password = "password";
+const char* googleApiKey = "APIkey";
 
 WifiLocation location(googleApiKey);
 WiFiServer server(80);
