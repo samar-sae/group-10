@@ -34,9 +34,9 @@ const unsigned long PRINT_INTERVAL = 100;
 unsigned long previousPrintout = 0;
 const auto pulsesPerMeter = 600;
 
-const char* ssid     =  "ssid";
-const char* password = "password";
-const char* googleApiKey = "googleapikey";
+const char* ssid     =  "AndroidAP";
+const char* password = "arwy0176";
+const char* googleApiKey = "AIzaSyBf8DN1sduEDVue-hP9qoUxLOL2DqogtdA";
 
 
 WifiLocation location(googleApiKey);
@@ -64,16 +64,10 @@ void setup() {
   Wire.begin();
   sensor.setTimeout(500);
 
-#ifdef ARDUINO_ARCH_ESP32
     WiFi.mode(WIFI_MODE_STA);
-#endif
-#ifdef ARDUINO_ARCH_ESP8266
-    WiFi.mode(WIFI_STA);
-#endif
     WiFi.begin(ssid, password);
   
- Serial.println();
-    Serial.println();
+    Serial.println("");
     Serial.print("Connecting to ");
     Serial.println(ssid);
     WiFi.begin(ssid, password);
@@ -95,7 +89,6 @@ void setup() {
     Serial.println("Longitude: " + String(loc2.lon, 7));
     Serial.println("Accuracy: " + String(loc2.accuracy));
 
-
     Serial.println("");
     Serial.println("WiFi connected.");
     Serial.println("IP address: ");
@@ -103,6 +96,7 @@ void setup() {
 
     if (MDNS.begin("magess")) {
 
+      MDNS.addService("http","tcp",80);
       Serial.println("magess.local is up");
     }
     
