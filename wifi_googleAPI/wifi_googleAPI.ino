@@ -2,20 +2,11 @@
 #include <Wire.h>
 #include <VL53L0X.h>
 #include <ESPmDNS.h>
-
-
+#include <WebServer.h>
 
 #include <Arduino.h>
 #include <Arduino_JSON.h>
-#ifdef ARDUINO_ARCH_SAMD
-#include <WiFi101.h>
-#elif defined ARDUINO_ARCH_ESP8266
-#include <ESP8266WiFi.h>
-#elif defined ARDUINO_ARCH_ESP32
 #include <WiFi.h>
-#else
-#error Wrong platform
-#endif 
 
 #include <WifiLocation.h>
 
@@ -34,9 +25,9 @@ const unsigned long PRINT_INTERVAL = 100;
 unsigned long previousPrintout = 0;
 const auto pulsesPerMeter = 600;
 
-const char* ssid     =  "AndroidAP";
-const char* password = "arwy0176";
-const char* googleApiKey = "AIzaSyBf8DN1sduEDVue-hP9qoUxLOL2DqogtdA";
+const char* ssid     =  "SSID";
+const char* password = "PASS";
+const char* googleApiKey = "APIKEY";
 
 
 WifiLocation location(googleApiKey);
@@ -96,7 +87,7 @@ void setup() {
 
     if (MDNS.begin("magess")) {
 
-      MDNS.addService("http","tcp",80);
+      MDNS.addService("http", "tcp", 80);
       Serial.println("magess.local is up");
     }
     
@@ -118,7 +109,7 @@ void setup() {
 int value = 0;
 
 void loop() {
-   
+  
    Serial.println(sensor.readRangeContinuousMillimeters());
     Serial.println();
     WiFiClient client = server.available();   // listen for incoming clients
