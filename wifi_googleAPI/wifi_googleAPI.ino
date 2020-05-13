@@ -36,7 +36,8 @@ const auto pulsesPerMeter = 600;
 
 const char* ssid     =  "ssid";
 const char* password = "password";
-const char* googleApiKey = "APIkey";
+const char* googleApiKey = "googleapikey";
+
 
 WifiLocation location(googleApiKey);
 WiFiServer server(80);
@@ -147,7 +148,7 @@ void loop() {
 
             // the content of the HTTP response follows the header:
             client.print("Click <a href=\"/F\">here</a> to turn on the car.<br>");
-            client.print("Click <a href=\"/S\">here</a> to turn off the car.<br>");
+            client.print("Click <a href=\"/S\">here</a> to stop the car.<br>");
             client.print("Click <a href=\"/L\">here</a> to turn left with the car.<br>");
             client.print("Click <a href=\"/R\">here</a> to turn right with the car.<br>");
             client.print("Click <a href=\"/B\">here</a> to go backwards with the car.<br>");
