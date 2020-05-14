@@ -23,6 +23,7 @@ public class ManualControlActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manual_control);
 
 
+
         buttonsInitializer();
 
         forward.setOnClickListener(new View.OnClickListener() {

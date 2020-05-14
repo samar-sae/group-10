@@ -7,25 +7,28 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 public class MainActivity extends AppCompatActivity {
 
     private Button button;
     TextView textView;
+
     private Button location;
     //HTTP server;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         textView = (TextView) findViewById(R.id.makeDelivText);
         //server = new HTTP();
         button = (Button) findViewById(R.id.manuallyBtn);
-        location = (Button) findViewById(R.id.button3);
+        location = (Button) findViewById(R.id.currentLocation);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
+
 
             public void onClick(View v) {
 
